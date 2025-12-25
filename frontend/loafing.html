@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>no more loafing</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: sans-serif;
+    }
+    #controls {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #stateImage {
+      margin-top: 20px;
+      max-width: 200px;
+    }
+    #stateText {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    canvas {
+        max-width: 320px;
+        image-rendering: pixelated;
+    }
+    video {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+    }
+    
+  </style>
+</head>
+<body>
+
+<h2>No Loafing Zone 🍞</h2>
+
+<!-- <video id="video" autoplay playsinline style="display:none;"></video> -->
+<video id="video" autoplay playsinline style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;"></video>
+<canvas id="canvas"></canvas>
+
+<!-- <div id="videoToggleContainer" style="display:none; margin-top:10px;"></div> -->
+
+<div id="controls">
+  <button id="captureFocus">Capture Locked In</button>
+  <button id="captureLoaf">Capture Loafing</button>
+  <button id="submitCalibration">Submit</button>
+</div>
+
+<img id="stateImage" src="../assets/idle.png" alt="State Image">
+<p id="stateText">Calibration not done</p>
+
+<!-- Mediapipe libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+
+<script src="loafing.js"></script>
+</body>
+</html>
