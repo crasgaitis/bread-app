@@ -5,18 +5,19 @@
     </td>
     <td>
       <h3>Yeast Mode</h3>
-      <p>for my friend who sometimes pro-crust-inates. may your holidays be filled with peace, loaf, and joy! </p>
+      <p>for my friend who sometimes pro-crust-inates. <br/> may your holidays be filled with peace, loaf, and joy! 🍞🍞🍞</p>
       <br/>
     </td>
   </tr>
 </table>
 
-dev run via:
+dev static run via:
 1. ```cd frontend```
 2. ```python -m http.server 8000```
 
 todo's:
-- add audio for loafing feature
-- css changes --> mousetrail, font update, button, animations/easter eggs
+- add audio for loafing feature ✅
+- css changes --> mousetrail ✅, font update, button, animations ✅, easter eggs
 - beautify readme
-- todo's
+- todo's ✅
+- clean code

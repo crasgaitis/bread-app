@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script>
+<!-- <script>
   // Ensure Emscripten Module is initialized BEFORE Mediapipe scripts load.
   window.Module = window.Module || {};
   Module.arguments = Module.arguments || [];
   Module.locateFile = Module.locateFile || function(path) { return '/frontend/vendor/mediapipe/' + path; };
   console.log('Module.locateFile ->', Module.locateFile('face_mesh_solution_simd_wasm_bin.wasm'));
-</script>
+</script> -->
   <meta charset="UTF-8">
   <title>no more loafing</title>
   <link rel="stylesheet" href="styles.css">
@@ -81,38 +81,9 @@
 <img id="stateImage" src="assets/idle.png" alt="State Image">
 <p id="stateText">Calibration not done</p>
 
-<!-- Try to load vendor-hosted Mediapipe first; fall back to CDN on error -->
-<script>
-  (function(){
-    function loadWithFallback(src, fallback){
-      return new Promise(function(resolve){
-        var s = document.createElement('script');
-        s.src = src;
-        s.crossOrigin = 'anonymous';
-        s.onload = function(){ resolve(); };
-        s.onerror = function(){
-          if(fallback){
-            var s2 = document.createElement('script');
-            s2.src = fallback;
-            s2.crossOrigin = 'anonymous';
-            s2.onload = function(){ resolve(); };
-            s2.onerror = function(){ resolve(); };
-            document.head.appendChild(s2);
-          } else resolve();
-        };
-        document.head.appendChild(s);
-      });
-    }
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+<script src="loafing.js"></script>
 
-    Promise.all([
-      loadWithFallback('vendor/mediapipe/face_mesh.js', 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js'),
-      loadWithFallback('vendor/mediapipe/camera_utils.js', 'https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js')
-    ]).then(function(){
-      var s = document.createElement('script');
-      s.src = 'loafing.js';
-      document.body.appendChild(s);
-    });
-  })();
-</script>
 </body>
 </html>

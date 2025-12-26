@@ -93,9 +93,15 @@ captureFocusBtn.addEventListener("click", () => capture("focus"));
 captureLoafBtn.addEventListener("click", () => capture("loaf"));
 submitBtn.addEventListener("click", submitCalibration);
 
+// const faceMesh = new FaceMesh({
+//   locateFile: f => `vendor/mediapipe/${f}`
+// });
+
 const faceMesh = new FaceMesh({
-  locateFile: f => `vendor/mediapipe/${f}`
+  locateFile: (file) =>
+    `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`
 });
+
 
 faceMesh.setOptions({
   maxNumFaces: 1,
