@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script> window.Module = window.Module || {}; Module.arguments = Module.arguments || []; Module.locateFile = Module.locateFile || function(path) { return '/vendor/mediapipe/' + path; }; </script>
+<script>
+  // Ensure Emscripten Module is initialized BEFORE Mediapipe scripts load.
+  window.Module = window.Module || {};
+  Module.arguments = Module.arguments || [];
+  // On Vercel we serve static files under /frontend/, so locate assets there.
+  Module.locateFile = Module.locateFile || function(path) { return '/frontend/vendor/mediapipe/' + path; };
+  console.log('Module.locateFile ->', Module.locateFile('face_mesh_solution_simd_wasm_bin.wasm'));
+</script>
   <meta charset="UTF-8">
   <title>no more loafing</title>
   <link rel="stylesheet" href="styles.css">
@@ -66,8 +73,7 @@
 <p id="stateText">Calibration not done</p>
 
 <!-- Mediapipe libraries -->
-<!-- Provide Emscripten Module arguments before loading Mediapipe -->
-<script>window.Module = window.Module || {}; window.Module.arguments = window.Module.arguments || [];</script>
+<!-- Mediapipe loader will use Module.locateFile set above -->
 <!-- Try to load vendor-hosted Mediapipe first; fall back to CDN on error -->
 <script>
   (function(){
